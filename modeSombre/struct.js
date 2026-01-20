@@ -1,16 +1,22 @@
-let bouton = document.querySelector ("#mode");
+let bouton = document.querySelector("#mode");
+let body = document.body;
+let estSombre = localStorage.getItem("theme") === "sombre";
 
-let body = document.querySelector ('body');
-let estSombre = false; // false=> mode clair et true mode sombre
+if (estSombre) {
+    body.style.backgroundColor = "#112F41";
+    body.style.color = "white";
+}
 
-bouton.addEventListener('click', () => {
-    if (!estSombre){
+bouton.addEventListener("click", () => {
+    estSombre = !estSombre;
+
+    if (estSombre) {
         body.style.backgroundColor = "#112F41";
         body.style.color = "white";
-        estSombre = true;
-    }else{
+        localStorage.setItem("theme", "sombre");
+    } else {
         body.style.backgroundColor = "white";
         body.style.color = "black";
-        estSombre = false;
+        localStorage.setItem("theme", "clair");
     }
 });
